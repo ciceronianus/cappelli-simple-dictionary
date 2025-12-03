@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cappelli's Dictionary of Latin Abbreviations</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="theme.css">
+</head>
+<body>
+    <!-- Cappelli CAPTCHA modal -->
+    <div id="cappelliCaptcha" class="captcha-modal" aria-hidden="true">
+        <div class="captcha-panel" role="dialog" aria-modal="true" aria-labelledby="captchaTitle">
+            <h2 id="captchaTitle">Cappelli CAPTCHA</h2>
+            <p id="captchaPrompt">Please complete the CAPTCHA in order to access the dictionary.</p>
+            <p id="captchaInstruction" class="captcha-instruction" aria-hidden="true"></p>
+            <div id="captchaGrid" class="captcha-grid"></div>
+            <div class="captcha-actions">
+                <button id="verifyCaptcha">Verify</button>
+                <button id="regenCaptcha">Skip / New challenge</button>
+            </div>
+            <div id="captchaFeedback" class="captcha-feedback" aria-live="polite"></div>
+        </div>
+    </div>
+
+    <div class="container">
+    <h1>Cappelli's Dictionary of Latin Abbreviations</h1>
+
+    <div class="controls">
+        <input type="text" id="searchInput" placeholder="Search for an abbreviation or transcription...">
+        <select id="searchField">
+            <option value="">Search: abbreviations + transcriptions</option>
+            <option value="characters">Abbreviations only</option>
+            <option value="transcription">Transcriptions only</option>
+        </select>
+        <select id="languageFilter">
+            <option value="">All languages</option>
+        </select>
+    </div>
+        
+
+    <div class="layout">
+        <table id="resultsTable">
+        <colgroup>
+            <col style="width:40px">
+            <col style="width:80px">
+            <col style="width:140px">
+                <col style="width:300px">
+            <col style="width:120px">
+            <col style="width:110px"> <!-- language column: wider so header fits -->
+            <col style="width:80px">
+        </colgroup>
+        <thead>
+                    <tr>
+                        <th class="pin-header"><button id="unpinAllBtn" class="header-unpin" aria-label="Pin header">📌</button></th>
+                    <th>Image</th>
+                    <th>Characters</th>
+                    <th>Transcription</th>
+                    <th>Category</th>
+                    <th>Period</th>
+                    <th>Language</th>
+                </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+        <!-- details panel removed: all information now shown in the table -->
+    </div>
+
+    <div class="table-controls">
+        <button id="showMoreBtn" style="display:none">Show more</button>
+    </div>
+
+    
+    <script src="script.js"></script>
+</body>
+</html>

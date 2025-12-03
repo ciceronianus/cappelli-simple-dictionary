@@ -1,0 +1,172 @@
+body {
+    font-family: sans-serif;
+    margin: 2em;
+}
+
+h1 {
+    text-align: center;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+.controls {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.controls input, .controls select {
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+.controls input { flex: 1 1 60%; }
+.controls select { flex: 0 0 18%; }
+
+.layout { display: flex; gap: 1rem; }
+table { flex: 1 1 65%; table-layout: fixed; }
+
+tr { cursor: pointer; }
+.chars { font-weight: bold; }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 0.5em;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* table thumbnail */
+table td img { max-width: 60px; height: auto; display: block; }
+
+/* details image keeps full width */
+#details img { max-width: 100%; }
+
+.table-controls { margin: 0.5rem 0; }
+.table-controls #showMoreBtn { padding: 0.4rem 0.6rem; font-size: 0.95rem; }
+
+/* highlight style: bright yellow, not orange */
+mark.match { background: #fff59d; color: #000; padding: 0 0.1rem; border-radius: 2px; }
+
+/* ensure wrapping for long transcription text without changing column widths */
+td { word-break: break-word; }
+
+/* pin button */
+.pin-btn { background: transparent; border: 0; cursor: pointer; padding:4px; display:inline-flex; align-items:center; justify-content:center; border-radius:6px }
+.pin-btn .icon { width:18px; height:18px; display:block; fill:currentColor; stroke:none }
+.pin-btn { color:#6b7280 }
+.pin-btn.pinned { color:#b45309 } /* amber-ish when pinned */
+.pin-btn:focus { outline:2px solid rgba(11,22,40,0.12); box-shadow:0 0 0 3px rgba(37,99,235,0.08) }
+
+/* pinned row highlight */
+tr.pinned-row td { background: #fff7e6 !important; }
+
+/* drag & drop visuals for pinned rows */
+tr.pinned-row.dragging { opacity: 0.45; }
+tr.pinned-row.drag-over { outline: 2px dashed rgba(37,99,235,0.6); }
+
+/* period tag style (Notion-like colored pill) */
+.period-tag {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+/* clickable filter cells */
+td.cell-filter { cursor: pointer; }
+td.cell-filter:hover { background: rgba(0,0,0,0.03); }
+
+/* small unpin button in table header */
+.header-unpin {
+    /* always visible as an icon button in the header; JS changes its symbol */
+    display: inline-block;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    color: #6b7280;
+    font-size: 1.05rem;
+    margin-right: 0.4rem;
+    padding: 0 6px;
+    border-radius: 4px;
+}
+.header-unpin:hover { color: #b45309; background: rgba(0,0,0,0.03); }
+
+/* ensure the Pin header doesn't wrap so the icon stays next to the word */
+.pin-header { white-space: nowrap; }
+
+/* small checklist item style (used if needed) */
+.check-item { display:flex; align-items:center; gap:0.4rem; padding:0.15rem 0.25rem; background:transparent; border-radius:4px; }
+.panel-actions { display:flex; gap:0.5rem; justify-content:flex-end; margin-top:0.5rem; }
+
+/* CAPTCHA modal styles */
+.captcha-modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10,10,12,0.45);
+    z-index: 9999;
+}
+.captcha-panel {
+    background: #fff;
+    padding: 1rem 1.25rem;
+    border-radius: 10px;
+    max-width: 820px;
+    width: calc(100% - 2rem);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+.captcha-panel h2 { margin-top: 0; margin-bottom: 0.25rem; }
+.captcha-instruction {
+    margin: 0 0 0.4rem 0;
+    color: #374151;
+    font-size: 0.98rem;
+}
+
+.captcha-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin: 0.5rem 0 0.75rem 0;
+}
+.captcha-card {
+    position: relative;
+    background: #fafafa;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    display:flex; align-items:center; justify-content:center; min-height:86px;
+}
+.captcha-card img { max-width: 100%; max-height: 120px; display:block; }
+.captcha-card .overlay {
+    position: absolute; inset: 0; display: none; align-items:center; justify-content:center; font-weight:700; color:#fff;
+}
+.captcha-card.selected { border-color: #2563eb; box-shadow: 0 4px 14px rgba(37,99,235,0.12); }
+.captcha-card.selected .overlay { display:flex; background: rgba(37,99,235,0.6); }
+.captcha-actions { display:flex; gap:0.5rem; justify-content:flex-end; margin-top:0.5rem; }
+.captcha-feedback { margin-top:0.5rem; min-height:1.2em; }
+.captcha-feedback.success { color: #065f46; }
+.captcha-feedback.fail { color: #7f1d1d; }
+
+/* small responsiveness */
+@media (max-width:520px){
+    .captcha-grid { grid-template-columns: repeat(2,1fr); }
+}
